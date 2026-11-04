@@ -1,4 +1,4 @@
-﻿# Project 01: Infrastructure as Code with Terraform on Azure
+﻿# Project 02: Infrastructure as Code with Terraform on Azure
 
 ## Goal
 Build a small, repeatable Azure network with Terraform instead of clicking in the portal, then destroy it to keep cost near zero.
