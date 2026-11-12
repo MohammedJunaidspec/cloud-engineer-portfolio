@@ -1,4 +1,4 @@
-# Project 02 - Azure Landing Zone with Terraform
+# Project 03 - Azure Landing Zone with Terraform
 
 A small landing zone on Azure, built entirely with Terraform. It adds governance guardrails (policy, locks, logging, budget) so resources follow the rules from day one. Region: **UAE North**, the closest Azure region to Saudi Arabia.
 
@@ -95,3 +95,4 @@ This is a simple mapping to show the thinking. It is not a compliance claim.
 ## Cost
 
 Nothing was left running. Everything was destroyed after testing.
+
