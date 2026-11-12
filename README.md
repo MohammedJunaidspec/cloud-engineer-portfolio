@@ -1,6 +1,6 @@
 ﻿# Cloud Engineer Portfolio
 
-Hands-on cloud projects by Mohammed Junaid (Azure, OCI, Linux, Terraform).
+Hands-on cloud projects by Mohammed Junaid (Azure, OCI, Linux, Terraform,AWS,).
 
 | # | Project | Tools | Status |
 |---|---|---|---|
