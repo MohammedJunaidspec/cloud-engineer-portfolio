@@ -71,3 +71,4 @@ I set a budget alert, kept to free or very cheap resources, and ran `terraform d
 ## Next
 Add the same network on AWS using Terraform.
 
+
