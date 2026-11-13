@@ -73,3 +73,4 @@ Add the same network on AWS using Terraform.
 
 
 Ctrl+End
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c13316d3-de21-4dd7-b078-cfc0bcfafd9e" />
