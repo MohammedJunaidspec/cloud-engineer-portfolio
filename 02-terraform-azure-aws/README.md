@@ -1,4 +1,4 @@
-``# Project 02: Infrastructure as Code with Terraform on Azure
+# Project 02: Infrastructure as Code with Terraform on Azure and AWS
 
 ## Goal
 Build a small, repeatable Azure network with Terraform instead of clicking in the portal, then destroy it to keep cost near zero.
@@ -21,7 +21,7 @@ Terraform, Azure CLI, Azure, PowerShell, Git
 5. `terraform destroy` when finished
 
 ## Screenshots
-Budget alert (set before deploying):
+## Part 1: Azure screenshots
 
 ![budget](images/01-budget.png)
 
@@ -74,3 +74,55 @@ Add the same network on AWS using Terraform.
 
 Ctrl+End
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c13316d3-de21-4dd7-b078-cfc0bcfafd9e" />
+## Part 2: The same network on AWS
+
+I built the same idea on AWS in the Sydney region (ap-southeast-2). My free-plan account is fixed to that region, so I used it.
+
+| Piece | Azure | AWS |
+|---|---|---|
+| Network | Virtual network (10.10.0.0/16) | VPC (10.20.0.0/16) |
+| Subnet | Subnet (10.10.1.0/24) | Public subnet (10.20.1.0/24) |
+| Firewall | Network security group, SSH rule | Security group, SSH only from my IP (/32) |
+| Internet path | Built in | Internet gateway + route table + association |
+| Storage | Storage account (LRS) | S3 bucket, public access blocked, encrypted |
+
+### AWS result
+- `terraform plan` showed 10 resources to add.
+- `terraform apply` created all 10.
+- I checked the VPC, the security group rule and the private S3 bucket in the console.
+- `terraform destroy` removed all 10, so nothing is left running.
+
+### AWS screenshots
+Terraform plan:
+
+![aws plan](images/09-aws-terraform-plan.png)
+
+Terraform apply:
+
+![aws apply](images/10-aws-terraform-apply.png)
+
+VPC in the console:
+
+![aws vpc](images/11-aws-vpc-console.png)
+
+Security group, SSH from my IP only:
+
+![aws security group](images/12-aws-security-group-ssh-my-ip.png)
+
+S3 bucket, block all public access on:
+
+![aws s3](images/13-aws-s3-block-public-access.png)
+
+Destroy complete:
+
+![aws destroy](images/14-aws-terraform-destroy-complete.png)
+
+### Problems and fixes
+- AWS refused a security group name starting with `sg-`. I renamed it `ssh-from-my-ip`.
+- My free-plan account has no region selector, so I used Sydney instead of the UAE.
+- I used `aws login` (browser sign-in) instead of long-lived access keys.
+
+### What I learned
+- The same design needs different building blocks on each cloud.
+- SSH from one IP only (/32) is a simple, strong default.
+- Block public access on S3 from day one.
